@@ -1,0 +1,4 @@
+.env
+.venv/
+.logfire/
+__pycache__/DATA/
