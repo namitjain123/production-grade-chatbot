@@ -1,0 +1,19 @@
+# Dedicated image for the Streamlit frontend.
+# The startup command is baked in here (exec-form CMD = a proper argv array),
+# so the Container App needs NO command/args override — avoiding the portal's
+# single-line override field that can't split arguments.
+FROM python:3.12-slim
+
+WORKDIR /app
+
+COPY requirements-ui.txt .
+RUN pip install --no-cache-dir -r requirements-ui.txt
+
+COPY . .
+
+EXPOSE 8000
+
+CMD ["streamlit", "run", "app/ui/app.py", \
+     "--server.port=8000", \
+     "--server.address=0.0.0.0", \
+     "--server.headless=true"]

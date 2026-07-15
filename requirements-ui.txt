@@ -1,0 +1,7 @@
+# Minimal deps for the Streamlit UI container — it's a thin client that only
+# calls the backend's /query endpoint, so it does NOT need torch, langchain,
+# qdrant, etc. Keeping this lean makes the UI image small and fast to build/pull.
+streamlit
+requests
+python-dotenv
+logfire
