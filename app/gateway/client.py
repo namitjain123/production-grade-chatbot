@@ -4,11 +4,6 @@ from langchain_openai import ChatOpenAI
 
 from app.config import settings
 
-
-# Production gateway config:
-#   - Fallback: primary @rag/llama-3.3-70b-versatile → @brag/llama-3.1-8b-instant on failure
-#   - Cache: semantic mode (requires Portkey Enterprise — silently falls back to simple on free/starter)
-#   - Retry: 2 attempts on rate limit / server error before triggering the fallback target
 GATEWAY_CONFIG = {
     "strategy": {"mode": "fallback"},
     "cache": {"mode": "simple"},
@@ -22,9 +17,6 @@ GATEWAY_CONFIG = {
     ]
 }
 
-# Portkey workspaces that disable inline configs require a saved config's 'pc-...' slug
-# instead of the raw dict. Set PORTKEY_CONFIG_SLUG once you've saved GATEWAY_CONFIG in the
-# Portkey dashboard; falls back to the inline dict if it's not configured yet.
 PORTKEY_CONFIG = settings.PORTKEY_CONFIG_SLUG or GATEWAY_CONFIG
 
 portkey_client = Portkey(

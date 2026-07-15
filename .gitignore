@@ -2,3 +2,5 @@
 .venv/
 .logfire/
 __pycache__/DATA/
+__pycache__
+DATA/

@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 load_dotenv()
 logfire.configure(token=os.getenv("LOGFIRE_TOKEN"))
 
-# Now safe to import app modules - logfire is already active
 from fastapi import FastAPI, Response
 from app.agents.graph import rag_agent
 from app.guardrails import initialize_rails, guard
@@ -23,7 +22,6 @@ app = FastAPI(title="Enterprise Agentic RAG API")
 @app.on_event("startup")
 def startup_event():
     initialize_rails()
-    # Pay embedding-model and reranker cold-start cost now, not on the user's first query
     get_embedding_dim()
     warm_up_ranker()
     logfire.info("✅ Embedding model and reranker warmed up.")
@@ -71,7 +69,7 @@ def query(request: QueryRequest):
     
     try:
         # Gate 1: NeMo Guardrails — blocks off-topic, jailbreaks, and handles dialog
-        rail_fired, rail_response = guard(q)
+        rail_fired, rail_response = guard(q) ## return as (true, response) if guardrails fired, else (False, None)
         if rail_fired:
             logfire.info(f"🛡️ Request blocked by guardrails | thread={thread_id}")
             return {
