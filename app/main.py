@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-logfire.configure(token=os.getenv("LOGFIRE_TOKEN"))
+logfire.configure(token=os.getenv("LOGFIRE_TOKEN"), send_to_logfire="if-token-present")
 
 from fastapi import FastAPI, Response
 from app.agents.graph import rag_agent
