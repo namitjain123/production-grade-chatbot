@@ -1,0 +1,13 @@
+.venv/
+.git/
+.github/
+__pycache__/
+**/__pycache__/
+*.pyc
+.env
+.logfire/
+DATA/
+processed_data/
+evals/
+.deepeval/
+*.md
