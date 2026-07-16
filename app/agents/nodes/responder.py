@@ -21,17 +21,8 @@ def generate_node(state: AgentState):
     if query == "CONVERSATIONAL":
         logfire.info("Generating conversational response using memory.")
         prompt = f"""
-        You are an Enterprise IT Assistant that ONLY helps with Kubernetes,
-        Intel hardware, and enterprise networking.
-
-        Rules:
-        - If the latest message is a greeting, farewell, or a follow-up that can
-          be answered from the CONVERSATION HISTORY, respond helpfully and concisely.
-        - If the latest message is off-topic — general knowledge, math, jokes,
-          trivia, current events, or any subject outside Kubernetes / Intel
-          hardware / enterprise networking (e.g. "what is 2+2", "what is vector RAG") —
-          DO NOT answer it. Reply exactly:
-          "I'm an Enterprise IT Assistant focused on Kubernetes, Intel hardware, and enterprise networking. I can't help with that — but ask me anything in those areas!"
+        You are a friendly and helpful Enterprise AI Assistant.
+        Answer the user's latest message using the CONVERSATION HISTORY below.
 
         CONVERSATION HISTORY:
         {history_str}
@@ -52,14 +43,8 @@ def generate_node(state: AgentState):
                 break
 
         prompt = f"""
-        You are a Senior Technical Architect specialising in Kubernetes, Intel
-        hardware, and enterprise networking.
-
-        Answer the USER QUESTION using ONLY the TECHNICAL CONTEXT provided.
-        - Do NOT use outside/general knowledge to fill gaps.
-        - If the question is not about Kubernetes, Intel hardware, or enterprise
-          networking, OR the TECHNICAL CONTEXT does not contain the answer, reply
-          exactly: "I'm an Enterprise IT Assistant focused on Kubernetes, Intel hardware, and enterprise networking, and I don't have that in my documentation."
+        You are a Senior Technical Architect.
+        Answer the question using the TECHNICAL CONTEXT provided.
 
         TECHNICAL CONTEXT:
         {full_context}
