@@ -2,6 +2,7 @@
 
 A production-grade, enterprise-level RAG system built with **LangGraph**, **Portkey LLM Gateway**, and **Gemini Embeddings**. The system distinguishes between technical "True Data" and random "Noisy Data" using semantic re-ranking, history-aware planning, and NeMo Guardrails for input/output safety.
 
+## Live Link : https://ragchatbot-ui.delightfulwater-01722cef.australiaeast.azurecontainerapps.io/
 ## Key Features
 
 - **Agentic Intelligence**: LangGraph for cyclic reasoning, multi-step planning, and conversation memory.
